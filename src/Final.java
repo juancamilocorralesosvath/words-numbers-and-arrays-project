@@ -329,7 +329,10 @@
 					printarrays(arraywithoutrepeated); 
 					
 					
-				     interception(numbers1, numbers2, numbers3);
+				 int[] interceptionarray = interception(numbers1, numbers2, numbers3); 
+				    
+					System.out.println("THE INTERCEPTION ARRAY IS: ");
+					printarrays(interceptionarray); 
 				   
 				     
 					
@@ -862,29 +865,50 @@
 		
 	*/
 
-     public static void interception(int[] array1, int[] array2, int[] array3){  
+     public static int[] interception(int[] array1, int[] array2, int[] array3){  
 	 
-	   int i=0, j=0, k=0;
-	   System.out.println("the interception is: ");
+	 int[] result = new int[array1.length + array2.length + array3.length];
+	 
+	 boolean flag1 = false, flag2 = false, flag3 = false;
+	 
+	  for(int i=0; i<array1.length; i++){ 
 	   
-	   while(i<array1.length && (j < array2.length && k < array3.length)){ 
-	   
-	     if(array1[i] == array2[j] && array2[j] == array3[k]){ 
+	      for(int j=0; j<array2.length; j++){ 
+		   
+		   if(array1[i] == array2[j]){ 
+		   
+		     flag1 = true;
+		   } 
+		   
+		   if(flag1 == true){ 
+		   
+		     for(int k=0; k<array3.length; k++){ 
+			 
+			   if(array2[j] == array3[k]){  
+			   
+			     flag2 = true;
+			   
+			   
+			 } 
+			 
+			 if(flag2 == true){ 
+			 
+			   for(int m=0; m<result.length; m++){ 
+			     if(result[m] != array3[k]){ 
+				   flag3 = true;
+				 } 
+				 if(flag3 == true){ 
+				   result[i] = array3[k];
+				 }
+			   }   
+			 }
+		   }
 		 
-		   System.out.println(array1[i]);
-		   i++;
-		   j++;
-		   k++;
-		 }else if(array1[i] < array2[j]){ 
-		   i++;
-		 } else if(array2[j] < array3[k]){ 
-		   j++;
-		 }else{ 
-		   k++;
 		 }
 	   
 	   } 
-           
+	  }	
+	  return result;
        		   
 	 
 	  
